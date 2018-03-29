@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/` for the build of code located in the src-a folder. 'http://localhost:5200' is where the src-b build resides. The apps will automatically reload if you change any of the source files in their respective directories.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/` for the build of code located in the src-a folder. `http://localhost:5200/` is where the src-b build resides. The apps will automatically reload if you change any of the source files in their respective directories.
 
 ## Build
 
