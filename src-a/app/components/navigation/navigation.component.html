@@ -1,0 +1,5 @@
+<nav>
+  <ul>
+    <li *ngFor="let n of ds.nav" [routerLink]="[n.link]">{{n.text}}</li>
+  </ul>
+</nav>

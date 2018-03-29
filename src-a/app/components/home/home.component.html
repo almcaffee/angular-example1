@@ -1,0 +1,38 @@
+
+<div class="data-container">
+
+  <div class="data" [routerLink]="['/customers']">
+    <h3>Customers</h3>
+    <div class="icon">
+      <i class="fas fa-users"></i>
+    </div>
+    <h4>{{ds.customers.length}}</h4>
+    <p>Customers in the DB</p>
+  </div>
+
+  <div class="data" [routerLink]="['/orders']">
+    <h3>Orders</h3>
+    <div class="icon">
+      <i class="fas fa-database"></i>
+    </div>
+    <h4>{{ds.orders.length}}</h4>
+    <p>Orders in the DB</p>
+  </div>
+
+  <div class="data" [routerLink]="['/products']">
+    <h3>Products</h3>
+    <div class="icon">
+      <i class="fas fa-box"></i>
+    </div>
+    <h4>{{ds.products.length}}</h4>
+    <p>Products in the DB</p>
+  </div>
+
+  <div class="data">
+    <h3>Recent Orders</h3>
+    <ul class="recent">
+      <li *ngFor="let o of orderIndexes; let i = index" [routerLink]="['/orders/'+ds.orders[o].id]"><span>{{ds.orders[o].date | date:'shortDate' }}</span>  <span>{{ds.orders[o].id}}</span></li>
+    </ul>
+  </div>
+
+</div>

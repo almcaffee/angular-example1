@@ -1,0 +1,33 @@
+<div *ngIf="product" class="data-container">
+
+  <div class="data">
+    <h2>{{product.id}}</h2>
+    <h5>{{product.manufacturer}}</h5>
+    <p>{{product.orderHistory.length}} Orders</p>
+    <p>{{product.description}}</p>
+
+  </div>
+
+  <div class="table">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col" [class.active]="sort.key === 'id'" (click)="sortProducts('date')">Order Date<i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col" [class.active]="sort.key === 'manufacturer'" (click)="sortProducts('orderId')">Order # <i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col" [class.active]="sort.key === 'price'" (click)="sortProducts('customerId')">Customer #<i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let h of product.orderHistory">
+          <th scope="row">{{h.date | date:'short'}}</th>
+          <td class="td-link" [routerLink]="['/orders',h.orderId]">{{h.orderId}}</td>
+          <td class="td-link" [routerLink]="['/customers',h.customerId]">{{h.customerId}}</td>
+        </tr>
+        <tr *ngIf="!product.orderHistory.length">
+          <th class="td-link" colspan="4" scope="row" class="centered">No order history for this product</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

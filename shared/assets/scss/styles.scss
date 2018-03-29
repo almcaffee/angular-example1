@@ -1,0 +1,182 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
+@import "./variables";
+@import "./common";
+
+* {
+  outline: none !important;
+}
+
+body {
+  font-family: "Opens Sans", sans-serif;
+  font-weight: 300;
+  background-color: $seriously-light-gray;
+  margin: 0px;
+}
+
+
+// Home Component Box/Content
+.data-container {
+  display: flex;
+  position: relative;
+  padding-top: 40px;
+  align-items: flex-start;
+  .table {
+    flex: 1;
+    width: auto;
+  }
+  .data {
+    display: inline-block;
+    position: relative;
+    width: 21%;
+    margin: 2%;
+    background-color: $white;
+    -webkit-box-shadow: 0px 10px 10px -6px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 10px 10px -6px rgba(0,0,0,0.3);
+    box-shadow: 0px 10px 10px -6px rgba(0,0,0,0.3);
+    ul {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      li {
+        display: block;
+        list-style-type: none;
+        margin: none;
+        padding: none;
+        overflow: hidden;
+        min-height: 20%;
+        span {
+          display: inline-block;
+          font-size: 12px;
+          line-height: 30px;
+          padding: .5vw 10px;
+        }
+        span:first-of-type {
+          // background: url(#{$image-path}/calendar-light.png) center center;
+          // background-size: cover;
+          background-color: $light-blue;
+          color: $white;
+          min-width: 5vw;
+        }
+        span:last-of-type {
+          background-color: $white;
+          color: $light-blue;
+          font-weight: 700;
+          @extend .text-center;
+          min-width: 11.5vw;
+          &:hover {
+            text-decoration: underline;
+            color: $dark-gray;
+            cursor: pointer;
+          }
+        }
+      }
+      li + li {
+        border-top: 1px solid $seriously-light-gray;
+      }
+    }
+    h2, h3, h4, h5, div.icon, p {
+      display: block;
+      margin: 0px;
+      padding: 5px 10px;
+    }
+    div.icon > .fas {
+      margin-top: 20px;
+    }
+    div.icon > .fas, h4 {
+      font-size: 65px;
+      @extend .text-center;
+    }
+    h2, h5 {
+      font-size: 30px;
+      @extend .text-center;
+    }
+    h3, h4 {
+      color: $dark-blue;
+    }
+    h2, p, div.icon {
+      color: $light-blue;
+      @extend .text-center;
+    }
+    h3 {
+      position: absolute;
+      left: 0;
+      bottom: 100%;
+      right: 0;
+      font-size: 18px;
+      //background-color: $light-blue-gray;
+      border-bottom: 1px solid $light-blue;
+      z-index: 5;
+    }
+
+  }
+  .data:last-of-type {
+    //background-color: $light-blue;
+  }
+  &.grid {
+    flex-flow: row wrap;
+    padding-top: 0px;
+    .data {
+      h2 { font-size: 18px !important; }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// Sorting Table Headers
+th {
+  position: relative;
+  color: $gray;
+  vertical-align: middle;
+  i, .fas {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 15px;
+  }
+  &.active, &:hover {
+    i, .fas {
+      display: inline-block;
+    }
+  }
+  &.active {
+    color: $dark-blue;
+  }
+  &:hover {
+    color: $light-blue;
+    cursor: pointer;
+  }
+}
+
+
+// bootstrap overrides
+table, .input-group {
+  margin: 2%;
+  background-color: $white;
+}
+table {
+  -webkit-box-shadow: 0px 10px 10px -2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 10px 10px -2px rgba(0,0,0,0.3);
+  box-shadow: 0px 10px 10px -2px rgba(0,0,0,0.3);
+}
+.input-group {
+  border-radius: .25rem;
+  -webkit-box-shadow: 0px 5px 5px -2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 5px 5px -2px rgba(0,0,0,0.3);
+  box-shadow: 0px 5px 5px -2px rgba(0,0,0,0.3);
+}
+.td-link:hover {
+  //background: $light-blue;
+  color: $light-blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.light-blue {
+  background: $light-blue;
+  color: $white;
+}
+.centered {
+  @extend .text-center;
+}

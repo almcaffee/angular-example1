@@ -1,0 +1,89 @@
+<div class="data-container">
+
+  <div *ngIf="customer" class="data">
+    <h2>
+      <p>
+        <a>{{customer.lastName}}, {{customer.firstName}}</a>
+      </p>
+    </h2>
+    <p>{{customer.firm}}</p>
+    <div class="icon">
+      <i class="fas fa-user"></i>
+    </div>
+    <!-- <h4>{{customer.orders.length}}/{{customer.orders.length}}</h4>
+    <p>Orders/Products</p> -->
+  </div>
+
+  <div *ngIf="customer && customer.orders" class="data">
+    <h3>Orders</h3>
+    <div class="icon">
+      <i class="fas fa-database"></i>
+    </div>
+    <h4>{{customer.orders.length}}</h4>
+    <p>Orders in the DB</p>
+  </div>
+
+  <div *ngIf="customer && customer.products" class="data">
+    <h3>Products</h3>
+    <div class="icon">
+      <i class="fas fa-box"></i>
+    </div>
+    <h4>{{customer.products.length}}</h4>
+    <p>Products in the DB</p>
+  </div>
+
+</div>
+
+<div *ngIf="customer && customer.products" class="container-fluid height-restricted">
+  <div class="row">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col" [class.active]="sort.key === 'id'" (click)="sortProducts('count')">Orders<i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col" [class.active]="sort.key === 'id'" (click)="sortProducts('id')">Product # <i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col" [class.active]="sort.key === 'date'" (click)="sortProducts('manufacturer')">Manufacturer <i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col" [class.active]="sort.key === 'price'" (click)="sortProducts('price')">Price <i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col" [class.active]="sort.key === 'customerId'">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of customer.products">
+          <td>{{p.count}}</td>
+          <th class="td-link" scope="row" [routerLink]="['/products',p.id]">{{p.id}}</th>
+          <td>{{p.manufacturer}}</td>
+          <td>{{p.price | currency}}</td>
+          <td>{{p.description}}</td>
+        </tr>
+        <tr *ngIf="!ds.filteredOrders.length">
+          <th class="td-link" colspan="4" scope="row" class="centered">0 results returned</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="customer && customer.orders" class="container-fluid height-restricted">
+  <div class="row">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col" [class.active]="sort.key === 'id'" (click)="sortOrders('id')">Order # <i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col" [class.active]="sort.key === 'date'" (click)="sortOrders('date')">Date <i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col" [class.active]="sort.key === 'price'" (click)="sortOrders('price')">Price <i *ngIf="sort.dir === 'desc'" class="fas fa-angle-down"></i><i *ngIf="sort.dir === 'asc'" class="fas fa-angle-up"></i></th>
+          <th scope="col">Customer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of customer.orders">
+          <th class="td-link" scope="row" [routerLink]="['/orders',o.id]">{{o.id}}</th>
+          <td>{{o.date | date:'MM/dd/yy HH:mm:ss'}}</td>
+          <td>{{o.price | currency}}</td>
+          <td>{{o.customer.lastName}}, {{o.customer.firstName}}</td>
+        </tr>
+        <tr *ngIf="!ds.filteredOrders.length">
+          <th class="td-link" colspan="4" scope="row" class="centered">0 results returned</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

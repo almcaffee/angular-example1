@@ -1,0 +1,39 @@
+<div class="container-fluid">
+<div class="row">
+  <div [formGroup]="customerForm" class="input-group mb-3">
+    <div class="input-group-prepend">
+      <button type="button" class="btn light-blue">Search Customers</button>
+      <button type="button" class="btn light-blue dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item">Search By:</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a *ngFor="let f of filterKeys" class="dropdown-item" (click)="changeFilter(f.key)">{{ f.text }}</a>
+      </div>
+    </div>
+    <input type="text" formControlName="value" class="form-control" id="orderSearch" aria-label="Search Customers">
+    <div class="input-group-append">
+      <label class="input-group-text">{{activeFilter.text}}</label>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="data-container grid">
+
+  <div *ngFor="let c of ds.filteredCustomers; let i = index" class="data" [routerLink]="['/customers', c.id]">
+    <h2>
+      <p>
+        <a class="link-text" [routerLink]="['/customers', c.id]">{{c.lastName}}, {{c.firstName}}</a>
+      </p>
+    </h2>
+    <p>{{c.firm}}</p>
+    <div class="icon">
+      <i class="fas fa-user"></i>
+    </div>
+    <h4>{{c.orders.length}}</h4>
+    <p>Orders in the Database</p>
+  </div>
+
+</div>
